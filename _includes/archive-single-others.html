@@ -1,0 +1,49 @@
+{% include base_path %}
+
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="display: flex; align-items: flex-start;">
+      {% if teaser %}
+        <figure style="margin-right: 20px; flex-shrink: 0; width: 180px; max-height: 50px;">
+          <img src=
+            {% if teaser contains "://" %}
+              "{{ teaser }}"
+            {% else %}
+              "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+            {% endif %}
+            alt="">
+        </figure>
+      {% endif %}
+      
+      <div style="flex: 1;">
+        <h2 class="archive__item-title" itemprop="headline">
+          {% if post.link %}
+            <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+          {% else %}
+            <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+          {% endif %}
+        </h2>
+
+        {% if post.at %}
+          <b>{{ post.at }} <br></b>
+        {% endif %}
+
+        {% if post.excerpt %}
+          {{ post.excerpt }}
+        {% endif %}
+      </div>
+    </div>
+  </article>
+</div>
