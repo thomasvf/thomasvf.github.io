@@ -13,4 +13,4 @@ The system we developed can find a person's face, check if they're wearing a mas
 <p align="center">
     <img src="/images/we_thermal_faces/sample_application.gif" alt="GIF with the GUI" width="90%">
 </p>
-In this project, I participated on the development of the software and algorithms to process the thermal sensor data, and on the creation of a basic GUI to show the extracted information.
+In this project, I participated on the development of the software and algorithms to process the thermal sensor data, and on the creation of the GUI to show the extracted information.
